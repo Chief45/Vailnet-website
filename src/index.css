@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand — Gold from app icon */
+  --color-brand:       #C9A84C;
+  --color-brand-light: #FEF7DC;
+  --color-brand-dark:  #8B6212;
+
+  /* Accent — Warm Platinum / Silver (Replaces Cyan to prevent AI template look) */
+  --color-accent:      #E4E4E7;
+  --color-accent-light:#FAFAF9;
+  --color-accent-dark: #71717A;
+
+  /* Surface system — Premium Obsidian Dark */
+  --color-bg:            #0A0A0C;
+  --color-surface:       #121216;
+  --color-border:        rgba(255, 255, 255, 0.04);
+  --color-border-strong: rgba(255, 255, 255, 0.09);
+
+  /* Text system */
+  --color-text-primary:   #F4F4F5;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted:     #71717A;
+
+  /* Hero dark surface */
+  --color-hero: #0A0A0C;
+
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-tech: "Space Grotesk", sans-serif;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0A0A0C; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(201, 168, 76, 0.3); }
+
+/* === Base === */
+body {
+  background-color: #0A0A0C;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #F4F4F5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Hero === */
+.hero-section {
+  background-color: #0A0A0C;
+}
+
+/* === Card — premium glass === */
+.card-premium {
+  position: relative;
+  background: linear-gradient(135deg, #121216 0%, #0E0E11 100%);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-brand) 0%, var(--color-accent) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.card-premium:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201, 168, 76, 0.22);
+  box-shadow: 
+    0 24px 48px -15px rgba(201, 168, 76, 0.15),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+}
+
+.card-premium:hover::before {
+  opacity: 1;
+}
+
+/* === Navbar === */
+.navbar {
+  background: rgba(10, 10, 12, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* === Phone mockup === */
+.phone-shell {
+  background: #08080C;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 40px;
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.04);
+}
+
+/* === Nav link === */
+.nav-link {
+  color: rgba(244, 244, 245, 0.6);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-link:hover { color: #C9A84C; }
+
+/* === Stat pill badge === */
+.stat-badge {
+  background: #121216;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+.stat-badge:hover {
+  transform: translateY(-2px);
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow: 0 12px 24px -10px rgba(201, 168, 76, 0.15);
+}
+
+/* === Gold CTA button === */
+.btn-gold {
+  background: linear-gradient(135deg, #F2CC5E 0%, #C9A84C 55%, #A07830 100%);
+  color: #1a0e00;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(201, 168, 76, 0.25), inset 0 1px 0 rgba(255,255,255,0.25);
+}
+.btn-gold:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(201, 168, 76, 0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+/* === Dark Footer & Glows === */
+.footer-dark {
+  background-color: #0A0A0C;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+.footer-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.footer-glow-left {
+  position: absolute;
+  bottom: -120px;
+  left: -80px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(20px);
+}
+
+.footer-glow-right {
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(20px);
+}
+
+/* === Infinite Scrolling Marquee === */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+}
+
+.marquee-content {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+/* === Custom Glassmorphism & Overlays === */
+.glass-panel {
+  background: rgba(18, 18, 22, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.glass-panel-dark {
+  background: rgba(8, 8, 12, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
