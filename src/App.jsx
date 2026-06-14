@@ -3,6 +3,16 @@ import NavBar from './components/NavBar';
 import Hero from './components/Hero';
 
 window.triggerAPKDownload = () => {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  if (isIOS) {
+    toast.error('APK ni kwa watumiaji wa Android tu. Toleo la iOS linakuja hivi karibuni!', {
+      style: { background: '#1e293b', color: '#f59e0b', border: '1px solid rgba(245,158,11,0.4)', fontFamily: "'Plus Jakarta Sans',sans-serif" },
+      iconTheme: { primary: '#f59e0b', secondary: '#1e293b' },
+    });
+    return;
+  }
+
   toast.success('Download starting...', {
     style: { background: '#1e293b', color: '#f1f5f9', border: '1px solid rgba(201,168,76,0.4)', fontFamily: "'Plus Jakarta Sans',sans-serif" },
     iconTheme: { primary: '#C9A84C', secondary: '#1e293b' },
