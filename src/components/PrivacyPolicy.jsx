@@ -1,5 +1,5 @@
 const PrivacyPolicy = () => (
-  <section id="privacy" className="py-24 px-6 md:px-16 border-t border-white/5 bg-[#09090B] text-white">
+  <div className="text-white">
     <div className="max-w-6xl mx-auto">
       <div className="space-y-6">
         <div className="max-w-3xl">
@@ -40,7 +40,7 @@ const PrivacyPolicy = () => (
         </div>
       </div>
     </div>
-  </section>
+  </div>
 );
 
 export default PrivacyPolicy;

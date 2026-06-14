@@ -31,8 +31,8 @@ const Footer = () => (
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-[#C9A84C] mb-4">Legal</p>
             <div className="space-y-3">
-              <a href="#privacy" className="block hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#terms" className="block hover:text-white transition-colors">Terms of Service</a>
+              <button onClick={() => window.openPrivacyPolicy?.()} className="block hover:text-white transition-colors text-left bg-transparent border-none cursor-pointer p-0 focus:outline-none w-full">Privacy Policy</button>
+              <button onClick={() => window.openTermsOfService?.()} className="block hover:text-white transition-colors text-left bg-transparent border-none cursor-pointer p-0 focus:outline-none w-full">Terms of Service</button>
               <a href="https://www.mindenlabs.com" target="_blank" rel="noopener noreferrer" className="block hover:text-white transition-colors">mindenlabs.com</a>
             </div>
           </div>
@@ -66,8 +66,8 @@ const Footer = () => (
         <div className="flex flex-wrap items-center justify-center gap-3 text-xs uppercase tracking-[0.3em] text-white/50">
           <span>Social</span>
           <span className="hidden sm:inline">·</span>
-          <a href="#privacy" className="hover:text-white transition-colors">Privacy</a>
-          <a href="#terms" className="hover:text-white transition-colors">Terms</a>
+          <button onClick={() => window.openPrivacyPolicy?.()} className="hover:text-white transition-colors bg-transparent border-none cursor-pointer p-0 uppercase tracking-[0.3em] text-white/50 focus:outline-none">Privacy</button>
+          <button onClick={() => window.openTermsOfService?.()} className="hover:text-white transition-colors bg-transparent border-none cursor-pointer p-0 uppercase tracking-[0.3em] text-white/50 focus:outline-none">Terms</button>
         </div>
 
         {/* Social Icons */}
