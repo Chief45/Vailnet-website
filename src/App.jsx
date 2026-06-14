@@ -16,17 +16,12 @@ window.triggerAPKDownload = () => {
     return;
   }
 
-  toast.success('Download starting...', {
+  toast.success('Opening download link...', {
     style: { background: '#1e293b', color: '#f1f5f9', border: '1px solid rgba(201,168,76,0.4)', fontFamily: "'Plus Jakarta Sans',sans-serif" },
     iconTheme: { primary: '#C9A84C', secondary: '#1e293b' },
   });
   
-  const link = document.createElement('a');
-  link.href = '/vailnet.apk';
-  link.download = 'vailnet.apk';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  window.open('https://drive.google.com/file/d/1umg6B7su5W6ljzF-Y2OnvyeqTg17vhmr/view?usp=sharing', '_blank');
 };
 import Features from './components/Features';
 import IdentityGenerator from './components/IdentityGenerator';
