@@ -9,9 +9,8 @@ window.triggerAPKDownload = () => {
   });
   
   const link = document.createElement('a');
-  link.href = 'https://github.com/Chief45/VAILNET-APP/releases/download/v0.7.0/app-debug.apk';
-  link.target = '_blank';
-  link.rel = 'noopener noreferrer';
+  link.href = '/vailnet.apk';
+  link.download = 'vailnet.apk';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
