@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShieldCheck, ArrowRight, Lock, Smartphone,
   Menu, LayoutGrid, Bell, Search, Heart, 
@@ -7,6 +8,8 @@ import {
 import Logo from './Logo';
 
 const Hero = () => {
+  const [activeTab, setActiveTab] = useState('home'); // 'home', 'broadcast', 'whispers'
+
   return (
     <section className="hero-section min-h-screen flex items-center pt-16 px-6 md:px-16 overflow-hidden">
       <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-20">
@@ -200,83 +203,207 @@ const Hero = () => {
 
                     {/* ── Feed Container ── */}
                     <div style={{ flex: 1, padding: '0 12px', display: 'flex', flexDirection: 'column', gap: '8px', overflowY: 'hidden', zIndex: 10 }}>
-                      
-                      {/* Post 1: Interactive Signal */}
-                      <div className="bg-white/[0.02] border border-white/[0.04] rounded-xl p-3 flex flex-col gap-2">
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center gap-2">
-                            {/* Avatar with gold gradient */}
-                            <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-[#C9A84C] to-[#8B6212] flex-shrink-0" />
-                            <div>
-                              <p className="text-[9px] font-bold text-white leading-none">CipherMask_92</p>
-                              <p className="text-[7px] text-white/40 mt-0.5">2h ago · encrypted</p>
+                      <AnimatePresence mode="wait">
+                        {activeTab === 'home' && (
+                          <motion.div
+                            key="home-feed"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 10 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex flex-col gap-2"
+                          >
+                            {/* Post 1: Interactive Signal */}
+                            <div className="bg-white/[0.02] border border-white/[0.04] rounded-xl p-3 flex flex-col gap-2">
+                              <div className="flex justify-between items-center">
+                                <div className="flex items-center gap-2">
+                                  {/* Avatar with gold gradient */}
+                                  <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-[#C9A84C] to-[#8B6212] flex-shrink-0" />
+                                  <div>
+                                    <p className="text-[9px] font-bold text-white leading-none">CipherMask_92</p>
+                                    <p className="text-[7px] text-white/40 mt-0.5">2h ago · encrypted</p>
+                                  </div>
+                                </div>
+                                <span className="text-[7px] text-[#C9A84C] bg-[#C9A84C]/10 border border-[#C9A84C]/20 px-1.5 py-0.2 rounded-full">Signal</span>
+                              </div>
+                              <p className="text-[9px] text-white/70 leading-relaxed font-sans">
+                                Testing out the VailNet mobile nodes. Zero logs, zero identifiers. Complete communication freedom with sub-40ms latency globally! 🌐🔒
+                              </p>
+                              {/* Actions */}
+                              <div className="flex items-center gap-4 text-white/35 mt-0.5 border-t border-white/[0.03] pt-1.5">
+                                <div className="flex items-center gap-1"><Heart size={9} /> <span className="text-[7px]">142</span></div>
+                                <div className="flex items-center gap-1"><MessageSquare size={9} /> <span className="text-[7px]">28</span></div>
+                                <div className="flex items-center gap-1"><Repeat size={9} /> <span className="text-[7px]">15</span></div>
+                                <div className="flex items-center gap-1 ml-auto"><Share2 size={9} /></div>
+                              </div>
                             </div>
-                          </div>
-                          <span className="text-[7px] text-[#C9A84C] bg-[#C9A84C]/10 border border-[#C9A84C]/20 px-1.5 py-0.2 rounded-full">Signal</span>
-                        </div>
-                        <p className="text-[9px] text-white/70 leading-relaxed font-sans">
-                          Testing out the VailNet mobile nodes. Zero logs, zero identifiers. Complete communication freedom with sub-40ms latency globally! 🌐🔒
-                        </p>
-                        {/* Actions */}
-                        <div className="flex items-center gap-4 text-white/35 mt-0.5 border-t border-white/[0.03] pt-1.5">
-                          <div className="flex items-center gap-1"><Heart size={9} /> <span className="text-[7px]">142</span></div>
-                          <div className="flex items-center gap-1"><MessageSquare size={9} /> <span className="text-[7px]">28</span></div>
-                          <div className="flex items-center gap-1"><Repeat size={9} /> <span className="text-[7px]">15</span></div>
-                          <div className="flex items-center gap-1 ml-auto"><Share2 size={9} /></div>
-                        </div>
-                      </div>
 
-                      {/* Post 2: Official Announcement with Logo Card */}
-                      <div className="bg-white/[0.02] border border-white/[0.04] rounded-xl p-3 flex flex-col gap-2">
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center gap-2">
-                            <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-[#C9A84C] to-gray-500 flex-shrink-0" />
-                            <div>
-                              <p className="text-[9px] font-bold text-white leading-none">Apafield_Core</p>
-                              <p className="text-[7px] text-white/40 mt-0.5">5h ago · official</p>
+                            {/* Post 2: Official Announcement with Logo Card */}
+                            <div className="bg-white/[0.02] border border-white/[0.04] rounded-xl p-3 flex flex-col gap-2">
+                              <div className="flex justify-between items-center">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-[#C9A84C] to-gray-500 flex-shrink-0" />
+                                  <div>
+                                    <p className="text-[9px] font-bold text-white leading-none">Apafield_Core</p>
+                                    <p className="text-[7px] text-white/40 mt-0.5">5h ago · official</p>
+                                  </div>
+                                </div>
+                                <span className="text-[7px] text-[#FAF9F6] bg-white/5 border border-white/10 px-1.5 py-0.2 rounded-full">Official</span>
+                              </div>
+                              <p className="text-[9px] text-white/70 leading-relaxed font-sans">
+                                The new version of the VailNet protocol spec is published. Read the details about the zero-knowledge identity matrix.
+                              </p>
+                              
+                              {/* Embedded link card */}
+                              <div className="bg-gradient-to-br from-gray-900 to-black/60 border border-white/5 rounded-lg p-2 flex items-center gap-2.5 mt-0.5">
+                                <div className="w-8 h-8 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                  <Logo size={20} />
+                                </div>
+                                <div>
+                                  <p className="text-[8.5px] font-bold text-white">VailNet Protocol Spec</p>
+                                  <p className="text-[7px] text-[#C9A84C] font-medium mt-0.5">Read whitepaper online</p>
+                                </div>
+                              </div>
+                              
+                              {/* Actions */}
+                              <div className="flex items-center gap-4 text-white/35 mt-0.5 border-t border-white/[0.03] pt-1.5">
+                                <div className="flex items-center gap-1"><Heart size={9} /> <span className="text-[7px]">324</span></div>
+                                <div className="flex items-center gap-1"><MessageSquare size={9} /> <span className="text-[7px]">59</span></div>
+                                <div className="flex items-center gap-1"><Repeat size={9} /> <span className="text-[7px]">28</span></div>
+                                <div className="flex items-center gap-1 ml-auto"><Share2 size={9} /></div>
+                              </div>
                             </div>
-                          </div>
-                          <span className="text-[7px] text-[#FAF9F6] bg-white/5 border border-white/10 px-1.5 py-0.2 rounded-full">Official</span>
-                        </div>
-                        <p className="text-[9px] text-white/70 leading-relaxed font-sans">
-                          The new version of the VailNet protocol spec is published. Read the details about the zero-knowledge identity matrix.
-                        </p>
-                        
-                        {/* Embedded link card */}
-                        <div className="bg-gradient-to-br from-gray-900 to-black/60 border border-white/5 rounded-lg p-2 flex items-center gap-2.5 mt-0.5">
-                          <div className="w-8 h-8 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Logo size={20} />
-                          </div>
-                          <div>
-                            <p className="text-[8.5px] font-bold text-white">VailNet Protocol Spec</p>
-                            <p className="text-[7px] text-[#C9A84C] font-medium mt-0.5">Read whitepaper online</p>
-                          </div>
-                        </div>
-                        
-                        {/* Actions */}
-                        <div className="flex items-center gap-4 text-white/35 mt-0.5 border-t border-white/[0.03] pt-1.5">
-                          <div className="flex items-center gap-1"><Heart size={9} /> <span className="text-[7px]">324</span></div>
-                          <div className="flex items-center gap-1"><MessageSquare size={9} /> <span className="text-[7px]">59</span></div>
-                          <div className="flex items-center gap-1"><Repeat size={9} /> <span className="text-[7px]">28</span></div>
-                          <div className="flex items-center gap-1 ml-auto"><Share2 size={9} /></div>
-                        </div>
-                      </div>
+                          </motion.div>
+                        )}
 
+                        {activeTab === 'broadcast' && (
+                          <motion.div
+                            key="broadcast-feed"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 10 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex flex-col gap-2"
+                          >
+                            <div className="bg-white/[0.02] border border-white/[0.04] rounded-xl p-3 flex flex-col gap-2 relative overflow-hidden">
+                              <div className="flex justify-between items-center">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-[8px] text-white/50 border border-white/10">?</div>
+                                  <div>
+                                    <p className="text-[9px] font-bold text-white/85 leading-none">Anonymous Mask</p>
+                                    <p className="text-[7px] text-white/40 mt-0.5">10m ago · Broadcast</p>
+                                  </div>
+                                </div>
+                                <span className="text-[7px] text-blue-400 bg-blue-400/10 border border-blue-400/20 px-1.5 py-0.2 rounded-full">Echo</span>
+                              </div>
+                              <p className="text-[9px] text-white/70 leading-relaxed font-mono">
+                                Decoupling authentication from identity is the single most important step for digital privacy. If they don't know who you are, they can't sell your data. 📡🛡️
+                              </p>
+                              {/* Small simulated ripple waves */}
+                              <div className="flex gap-1 items-center h-4 mt-1">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C] animate-ping" />
+                                <span className="text-[7px] text-[#C9A84C] font-semibold">Active ripple propagation</span>
+                              </div>
+                              <div className="flex items-center gap-4 text-white/35 mt-0.5 border-t border-white/[0.03] pt-1.5">
+                                <div className="flex items-center gap-1"><Heart size={9} /> <span className="text-[7px]">89</span></div>
+                                <div className="flex items-center gap-1"><MessageSquare size={9} /> <span className="text-[7px]">12</span></div>
+                                <div className="flex items-center gap-1"><Repeat size={9} /> <span className="text-[7px]">43</span></div>
+                                <div className="flex items-center gap-1 ml-auto"><Share2 size={9} /></div>
+                              </div>
+                            </div>
+
+                            <div className="bg-white/[0.02] border border-white/[0.04] rounded-xl p-3 flex flex-col gap-2">
+                              <div className="flex justify-between items-center">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-[8px] text-white/50 border border-white/10">?</div>
+                                  <div>
+                                    <p className="text-[9px] font-bold text-white/85 leading-none">Anonymous Mask</p>
+                                    <p className="text-[7px] text-white/40 mt-0.5">45m ago · Broadcast</p>
+                                  </div>
+                                </div>
+                                <span className="text-[7px] text-zinc-400 bg-white/5 border border-white/10 px-1.5 py-0.2 rounded-full">Whisper</span>
+                              </div>
+                              <p className="text-[9px] text-white/70 leading-relaxed font-sans">
+                                Just built my mobile node. Runs perfectly in the background using minimal battery. Highly recommend downloading the APK!
+                              </p>
+                              <div className="flex items-center gap-4 text-white/35 mt-0.5 border-t border-white/[0.03] pt-1.5">
+                                <div className="flex items-center gap-1"><Heart size={9} /> <span className="text-[7px]">54</span></div>
+                                <div className="flex items-center gap-1"><MessageSquare size={9} /> <span className="text-[7px]">3</span></div>
+                                <div className="flex items-center gap-1"><Repeat size={9} /> <span className="text-[7px]">8</span></div>
+                                <div className="flex items-center gap-1 ml-auto"><Share2 size={9} /></div>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+
+                        {activeTab === 'whispers' && (
+                          <motion.div
+                            key="whispers-feed"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 10 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex flex-col gap-3 h-full justify-end py-1"
+                          >
+                            <div className="text-center py-1 border-b border-white/[0.04] mb-1">
+                              <p className="text-[8px] text-gray-500 font-mono tracking-wide">SECURE TUNNEL (ECDH)</p>
+                              <p className="text-[7px] text-[#C9A84C] font-mono truncate">@0x8b3e...941a</p>
+                            </div>
+
+                            {/* Chat Bubbles */}
+                            <div className="space-y-2.5 flex-1 flex flex-col justify-end">
+                              {/* Received */}
+                              <div className="flex flex-col items-start gap-1 max-w-[85%]">
+                                <span className="text-[6.5px] text-white/40 ml-1">@0x8b3e...941a</span>
+                                <div className="bg-white/5 border border-white/10 rounded-2xl rounded-tl-none px-2.5 py-1.5 text-[8.5px] text-white/90 leading-relaxed">
+                                  Hey, is this connection fully encrypted?
+                                </div>
+                              </div>
+
+                              {/* Sent */}
+                              <div className="flex flex-col items-end gap-1 max-w-[85%] self-end">
+                                <span className="text-[6.5px] text-[#C9A84C]/70 mr-1">You</span>
+                                <div className="bg-[#C9A84C]/10 border border-[#C9A84C]/20 rounded-2xl rounded-tr-none px-2.5 py-1.5 text-[8.5px] text-[#F2CC5E] leading-relaxed">
+                                  Yes, fully. AES-256-GCM. Not even the server can read the payloads.
+                                </div>
+                              </div>
+
+                              {/* Received */}
+                              <div className="flex flex-col items-start gap-1 max-w-[85%]">
+                                <span className="text-[6.5px] text-white/40 ml-1">@0x8b3e...941a</span>
+                                <div className="bg-white/5 border border-white/10 rounded-2xl rounded-tl-none px-2.5 py-1.5 text-[8.5px] text-white/90 leading-relaxed">
+                                  Incredible. No phone number or registration metadata logged either. Absolutely clean.
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Input placeholder */}
+                            <div className="mt-1 border-t border-white/[0.04] pt-2 flex gap-1.5 items-center">
+                              <div className="flex-1 bg-white/[0.03] border border-white/[0.05] rounded-lg px-2 py-1 text-white/30 text-[8px]">
+                                Type encrypted message...
+                              </div>
+                              <div className="w-5 h-5 bg-[#C9A84C] rounded-lg flex items-center justify-center text-[10px] text-black font-bold">&gt;</div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
 
                     {/* ── Bottom Navigation Bar ── */}
                     <div style={{ background: 'rgba(6, 6, 10, 0.98)', borderTop: '1px solid rgba(255,255,255,0.05)', padding: '6px 16px 8px', display: 'flex', flexDirection: 'column', gap: '4px', flexShrink: 0, zIndex: 30 }}>
                       <div className="flex justify-around items-center">
-                        <div className="flex flex-col items-center gap-0.5 text-[#C9A84C]">
+                        <button onClick={() => setActiveTab('home')} className={`flex flex-col items-center gap-0.5 focus:outline-none transition-colors cursor-pointer border-none bg-transparent ${activeTab === 'home' ? 'text-[#C9A84C]' : 'text-white/40 hover:text-white'}`}>
                           <Home size={12} />
-                          <span className="w-1 h-1 rounded-full bg-[#C9A84C]" />
-                        </div>
-                        <div className="text-white/40 hover:text-white transition-colors">
+                          {activeTab === 'home' && <span className="w-1 h-1 rounded-full bg-[#C9A84C]" />}
+                        </button>
+                        <button onClick={() => setActiveTab('broadcast')} className={`flex flex-col items-center gap-0.5 focus:outline-none transition-colors cursor-pointer border-none bg-transparent ${activeTab === 'broadcast' ? 'text-[#C9A84C]' : 'text-white/40 hover:text-white'}`}>
                           <Radio size={12} />
-                        </div>
-                        <div className="text-white/40 hover:text-white transition-colors">
+                          {activeTab === 'broadcast' && <span className="w-1 h-1 rounded-full bg-[#C9A84C]" />}
+                        </button>
+                        <button onClick={() => setActiveTab('whispers')} className={`flex flex-col items-center gap-0.5 focus:outline-none transition-colors cursor-pointer border-none bg-transparent ${activeTab === 'whispers' ? 'text-[#C9A84C]' : 'text-white/40 hover:text-white'}`}>
                           <Users size={12} />
-                        </div>
+                          {activeTab === 'whispers' && <span className="w-1 h-1 rounded-full bg-[#C9A84C]" />}
+                        </button>
                       </div>
                       <div style={{ height: '4px', display: 'flex', alignItems: 'center', justifyRules: 'center', marginTop: '2px' }}>
                         <div style={{ width: '80px', height: '3px', background: 'rgba(255,255,255,0.15)', borderRadius: '1.5px' }} />

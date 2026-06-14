@@ -26,6 +26,7 @@ window.triggerAPKDownload = () => {
   document.body.removeChild(link);
 };
 import Features from './components/Features';
+import IdentityGenerator from './components/IdentityGenerator';
 import About from './components/About';
 import StatusWidget from './components/StatusWidget';
 import PrivacyPolicy from './components/PrivacyPolicy';
@@ -41,6 +42,7 @@ function App() {
         <Hero />
         <StatusWidget />
         <Features />
+        <IdentityGenerator />
         <About />
         <PrivacyPolicy />
         <TermsOfService />
