@@ -16,12 +16,17 @@ window.triggerAPKDownload = () => {
     return;
   }
 
-  toast.success('Opening download link...', {
+  toast.success('Download starting in background...', {
     style: { background: '#1e293b', color: '#f1f5f9', border: '1px solid rgba(201,168,76,0.4)', fontFamily: "'Plus Jakarta Sans',sans-serif" },
     iconTheme: { primary: '#C9A84C', secondary: '#1e293b' },
   });
   
-  window.open('https://drive.google.com/file/d/1umg6B7su5W6ljzF-Y2OnvyeqTg17vhmr/view?usp=sharing', '_blank');
+  const link = document.createElement('a');
+  link.href = 'https://drive.google.com/uc?export=download&id=1umg6B7su5W6ljzF-Y2OnvyeqTg17vhmr';
+  link.target = '_blank';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 };
 import Features from './components/Features';
 import IdentityGenerator from './components/IdentityGenerator';
