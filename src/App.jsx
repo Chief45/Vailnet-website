@@ -6,7 +6,7 @@ window.triggerAPKDownload = () => {
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
   if (isIOS) {
-    toast.error('APK ni kwa watumiaji wa Android tu. Toleo la iOS linakuja hivi karibuni!', {
+    toast.error('The APK is only compatible with Android devices. iOS version coming soon!', {
       style: { background: '#1e293b', color: '#f59e0b', border: '1px solid rgba(245,158,11,0.4)', fontFamily: "'Plus Jakarta Sans',sans-serif" },
       iconTheme: { primary: '#f59e0b', secondary: '#1e293b' },
     });
