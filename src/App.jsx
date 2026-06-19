@@ -22,7 +22,8 @@ window.triggerAPKDownload = () => {
   });
   
   const link = document.createElement('a');
-  link.href = 'https://drive.google.com/uc?export=download&id=1umg6B7su5W6ljzF-Y2OnvyeqTg17vhmr';
+  link.href = 'https://github.com/Chief45/apaAI/releases/download/v0.070/app-release.apk';
+  link.setAttribute('download', 'app-release.apk');
   link.target = '_blank';
   document.body.appendChild(link);
   link.click();
